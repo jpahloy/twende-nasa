@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- cute little favicon -->
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+	<!-- include bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- nano gallery for the gallery -->
+	<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+
+	<!-- our functions -->
+	<script type="text/javascript" src="gallery.js"></script>
+	<script type="text/javascript" src="api_util.js"></script>
+	<script type="text/javascript" src="search.js"></script>
+
+	<title>Twende Nasa Challenge</title>
+</head>
+<body>
+
+	<!-- modal for the search -->
+	<div id="search_modal" class= "modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+		        	<h4 class="modal-title">Search</h4>
+				</div>
+
+				<!-- body -->
+				<div class="modal-body">
+					<!-- drop down for camera input -->
+					<div class="form-group">
+					    <label>Rover Camera</label>
+					    
+					    <select class="form-control" id="camera_input">
+						    <option>All</option>
+						 	<option>Front Hazard Avoidance Camera</option>
+						    <option>Rear Hazard Avoidance Camera</option>
+						    <option>Mast Camera</option>
+						    <option>Chemistry and Camera Complex</option>
+						    <option>Mars Hand Lens Imager</option>
+						    <option>Mars Descent Imager</option>
+						    <option>Navigation Camera</option>
+					    </select>
+					</div>
+
+					<!-- input for date -->
+					<div class="form-group">
+			 			<label>Date</label>
+		    			<input class="form-control" type="date" id="date_input">
+					</div>
+				</div>
+				<!-- footer -->
+				<div  class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button id="search_submit" onclick="process_form()" type="submit" class="btn btn-primary" data-dismiss="modal">Go</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- container for the gallery -->
+	<div class="container" align="center">
+		<h1>Twende NASA Challenge</h1>
+		<h3>Mars Rover Images</h3>
+		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#search_modal">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+		<div class="progress">
+    		<div id="pbar" class="progress-bar" style="width:0%"></div>
+  		</div>
+	</div>
+
+	<div id="gallery">
+		<script type="text/javascript">
+  			request_images(get_date(), "all");
+  		</script>
+  	</div>
+</body>
+</html>
